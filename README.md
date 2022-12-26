@@ -157,7 +157,14 @@ public class CubeGame : MonoBehaviour
 
 ![image](https://user-images.githubusercontent.com/105949115/209523217-319275fc-42f1-41a9-9471-551c8c1db31a.png)
 
-Далее можно увидеть результат работы перцетрона, на первой иллюстрации он высчитал работу OR, на втором AND.
+Далее можно увидеть результат работы перцетрона, на первой иллюстрации он высчитал работу OR, AND и NAND.
+
+![image](https://github.com/mushr0o0m/DA-in-GameDev-lab4/blob/main/OR.gif)
+
+![image](https://github.com/mushr0o0m/DA-in-GameDev-lab4/blob/main/AND.gif)
+
+![image](https://github.com/mushr0o0m/DA-in-GameDev-lab4/blob/main/NAND.gif)
+
 
 ## Выводы
 
