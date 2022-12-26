@@ -39,7 +39,7 @@
 Познакомиться с принципами работы перцептона, проанализировать его работу и построить визуальную модель работы в Unity
 
 ## Задание 1
-### В проекте Unity реализовать процеатон, который умеет производить вычесления элементарных логических функций.
+### В проекте Unity реализовать процеатон, который умеет производить вычесление элементарных логических функций.
 
 - Логическая операция **OR** 
 
@@ -49,7 +49,7 @@
   
   ![image](https://user-images.githubusercontent.com/105949115/209484731-24f52868-3b97-4d7b-9c2f-f9c10cb142b9.png)
   
-  Тест обученного прецептрона:
+  Тест обученного перцептрона:
   
   ![image](https://user-images.githubusercontent.com/105949115/209484765-fd0caa0b-4f5c-4a51-ab63-7356bc1a7351.png)
   
@@ -64,7 +64,7 @@
   
   ![image](https://user-images.githubusercontent.com/105949115/209485404-4b5e3d0d-ec76-470f-9531-4d4b0def625f.png)
   
-  Тест обученного прецептрона:
+  Тест обученного перцептрона:
   
   ![image](https://user-images.githubusercontent.com/105949115/209485399-aaf2f8d9-e3b3-4cad-88f7-66c003b4d841.png)
   
@@ -78,7 +78,7 @@
   
   ![image](https://user-images.githubusercontent.com/105949115/209485507-27c9467c-6a58-440a-b1c1-8eac9738781d.png)
   
-  Тест обученного прецептрона:
+  Тест обученного перцептрона:
   
   ![image](https://user-images.githubusercontent.com/105949115/209485499-c5546be6-6587-4f1c-8236-e5cad3f87f14.png)
   
@@ -93,7 +93,7 @@
   
   ![image](https://user-images.githubusercontent.com/105949115/209485634-312c293e-d42e-4d3b-b1fb-def1c216e75c.png)
   
-  Тест обученного прецептрона:
+  Тест обученного перцептрона:
   
   ![image](https://user-images.githubusercontent.com/105949115/209485624-4ba1db2a-3747-419d-bef2-ac7513e3ac6b.png)
   
@@ -116,9 +116,48 @@
 Необходимое количество эпох обучения зависит от количства ошибок, их должно уменьшаться и прийти к нулю, если задача линейная, иначе процептрон не сможет ее решить. По количству ошибок на первых эпохах можно понять, что для обучению процептрону необходимо больше эпох.
 
 ## Задание 3
-### 
+### Построить визуальную модель работы перцептрона на сцене Unity 
+
+Я создал новый С# скрипт CubeGame.cs. Он отслеживает соприкосновение двух кубов, каждый из которых помечен, как "верный или не верный", при их контакте он высчитывает значение перцептрона, и если оно равно false, то оба объекта удаляются.
+
+```cs
+
+using UnityEngine;
+
+public class CubeGame : MonoBehaviour
+{
+    [SerializeField] public bool IsTrueCube;
+    [SerializeField] private Perceptron perceptron;
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.GetComponent<CubeGame>() != null)
+        {
+            var otherGameCube = other.gameObject.GetComponent<CubeGame>();
+            var isTrueOtherNumValue = otherGameCube.IsTrueCube ? 1 : 0;
+            var isTrueThisNumValue = IsTrueCube ? 1 : 0;
+
+            if (perceptron.CalcOutput(isTrueThisNumValue, isTrueOtherNumValue) == 0)
+            {
+                Destroy(gameObject);
+                Destroy(other.gameObject);
+            }
+        }
+    }
+}
+
+```
+
+Каждый из кубов имеет Box Colider и Rigidbody для отслеживания их коллизии и симуляции физического поведения объектов.
+
+![image](https://user-images.githubusercontent.com/105949115/209523065-dbec6d06-b103-4fb0-961e-d6e1469c7ab4.png)
 
 
+На сцене находятся четыре пары кубов, красный обозначает - false, а зеленый - true.
+
+![image](https://user-images.githubusercontent.com/105949115/209523217-319275fc-42f1-41a9-9471-551c8c1db31a.png)
+
+Далее можно увидеть результат работы перцетрона, на первой иллюстрации он высчитал работу OR, на втором AND.
 
 ## Выводы
 
